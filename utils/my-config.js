@@ -1,4 +1,5 @@
-let port = process.env.MY_BACKEND_PORT || 5000
+// On Heroku the application must listen on a specific port.
+let port = process.env.PORT || 5000
 let dbUrl = process.env.MY_DB_URL
 
 if (process.env.NODE_ENV !== 'production') {
