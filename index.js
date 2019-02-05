@@ -14,7 +14,7 @@ app.use('/api/data', myDataRouter)
 
 
 app.get('/', (req, res) =>
-  res.send('<h1>Node and Express REST API example</h1><p>usage: http://localhost:3003/api/data/</p>'))
+  res.send('<h1>Node and Express REST API example</h1><p>usage: https://agile-temple-75130.herokuapp.com/api/data/</p>'))
 
 
 app.listen(myConfig.port, () => console.log(`Backend listening on port ${myConfig.port}!`))
