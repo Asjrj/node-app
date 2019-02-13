@@ -1,4 +1,4 @@
-// On Heroku the application must listen on a specific port.
+// On Heroku the application must listen on a specific port, which is confidured in process.env.PORT
 let port = process.env.PORT || 5000
 let dbUrl = process.env.MY_DB_URL
 
