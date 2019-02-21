@@ -1,16 +1,14 @@
 const customerRouter = require('express').Router()
 const Customer = require('../models/customer')
-
-// Id:n generointia varten
-let maxId = 100
+const generateId = require('../utils/my-util').generateId()
 
 
 customerRouter.get('/', (req, res) => {
   Customer
-  .find({})
-  .then(customers => {
-    res.json(customers)
-  })
+    .find({})
+    .then(customers => {
+      res.json(customers)
+    })
 })
 
 customerRouter.get('/:id', (req, res) => {
@@ -58,7 +56,7 @@ customerRouter.post('/', (req, res) => {
   if (data.name === undefined) {
     return res.status(400).json({ error: 'content missing' })
   }
-  data.id = ++maxId
+  data.id = generateId()
   myData = myData.concat(data)
   // Return data with newly generated id 
   res.json(data)
