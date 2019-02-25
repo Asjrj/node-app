@@ -12,9 +12,18 @@ mongoose
 
 const customerSchema = new mongoose.Schema({
   id: Number, 
-  name: String,
+  name: {type: String, required: true},
+  email: String,
+  role: String,
+  transactions: Array,
+  events: Array,
   address: {street: String, zip: String, city: String}
 })
+
+// Let's define an instance method (just an example)
+customerSchema.methods.findOthersWithSameRole = function(cb) {
+  return this.model('mycustomers').find({ role: this.role }, cb)
+}
 
 // The name of the collection is mycustomers
 const Customer = mongoose.model('mycustomer', customerSchema)

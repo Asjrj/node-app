@@ -2,11 +2,13 @@ const mongoose = require('mongoose')
 
 const productSchema = new mongoose.Schema({
   id: Number, 
-  class: String, 
+  type: String, 
   make: String, 
   model: String, 
   price: Number, 
-  instock: Number
+  inStock: Number,
+  description: String,
+  nrEvents: Number
 })
 
 // The name of the collection is myproducts
