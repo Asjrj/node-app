@@ -11,6 +11,7 @@ db.mycustomers.insertMany([
     "name": "Michael Chang",
     "email": "michael.chang@email.com",
     "role": "User",
+    "password": "$2b$10$QRFcV26gTG/mY/oCt/c5dOUCF3sgrb8laFf4vA4r0iKDCGyrBh00e",
     "transactions": [
       901,
       902
@@ -32,6 +33,7 @@ db.mycustomers.insertMany([
     "name": "Brad Smith",
     "email": "brad.smith@email.com",
     "role": "User",
+    "password": "$2b$10$QRFcV26gTG/mY/oCt/c5dOUCF3sgrb8laFf4vA4r0iKDCGyrBh00e",
     "transactions": [
       903
     ],
@@ -50,6 +52,7 @@ db.mycustomers.insertMany([
     "name": "Edgar Adams",
     "email": "edgar.adams@email.com",
     "role": "user",
+    "password": "$2b$10$QRFcV26gTG/mY/oCt/c5dOUCF3sgrb8laFf4vA4r0iKDCGyrBh00e",
     "address": {
       "street": "Polku 34",
       "zip": "01300",
@@ -62,6 +65,7 @@ db.mycustomers.insertMany([
     "name": "Andy Peterson",
     "email": "andy.peterson@email.com",
     "role": "Administrator",
+    "password": "$2b$10$QRFcV26gTG/mY/oCt/c5dOUCF3sgrb8laFf4vA4r0iKDCGyrBh00e",
     "address": {
       "street": "Avenue 15",
       "zip": "02100",
@@ -81,9 +85,9 @@ db.myproducts.insertMany([
     "make": "Samsung",
     "model": "XYZ",
     "price": 123,
-    "in-stock": 44,
+    "inStock": 44,
     "description": "Samsung XYZ kuvaus",
-    "nr-events": 7
+    "nrEvents": 7
   },
   {
     "id": 223,
@@ -91,9 +95,9 @@ db.myproducts.insertMany([
     "make": "Sony",
     "model": "Z5",
     "price": 234,
-    "in-stock": 55,
+    "inStock": 55,
     "description": "Sony Z5 kuvaus",
-    "nr-events": 8
+    "nrEvents": 8
   },
   {
     "id": 224,
@@ -101,9 +105,9 @@ db.myproducts.insertMany([
     "make": "Nokia",
     "model": "N9",
     "price": 345,
-    "in-stock": 33,
+    "inStock": 33,
     "description": "Nokia N9 kuvaus",
-    "nr-events": 9
+    "nrEvents": 9
   }
 ]
 )

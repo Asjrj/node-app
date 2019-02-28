@@ -15,9 +15,10 @@ const customerSchema = new mongoose.Schema({
   name: {type: String, required: true},
   email: String,
   role: String,
+  password: String,
   transactions: Array,
   events: Array,
-  address: {street: String, zip: String, city: String}
+  address: {street: String, zip: String, city: String, country: String}
 })
 
 // Let's define an instance method (just an example)

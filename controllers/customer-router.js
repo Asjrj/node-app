@@ -1,4 +1,5 @@
 const customerRouter = require('express').Router()
+const bcrypt = require('bcrypt')
 const Customer = require('../models/customer')
 const generateId = require('../utils/my-util').generateId
 
@@ -37,23 +38,32 @@ customerRouter.get('/:id', async (req, res) => {
 
 // Creating a new customer - no transactions or events exist yet
 customerRouter.post('/', async (req, res) => {
-  let data = req.body
-  if (data.name === undefined) {
-    return res.status(400).json({ error: 'content missing' })
+  try {
+    let data = req.body
+    if (data.name === undefined || data.password === undefined || data.email === undefined) {
+      return res.status(400).json({ error: 'content missing' })
+    }
+    let customerFound = await Customer.find({ name: data.name })
+    if (customerFound.length > 0) {
+      return res.status(400).send({ error: 'Customer by given name already exists' })
+    }
+    const saltRounds = 10
+    const passwordHash = await bcrypt.hash(data.password, saltRounds)
+    const newRole = data.role === undefined ? 'User' : data.role
+    const customer = new Customer({
+      id: generateId(),
+      name: data.name,
+      email: data.email,
+      password: passwordHash,
+      role: newRole,
+      address: { street: data.street, zip: data.zip, city: data.city, country: data.country }
+    })
+    const customerSaved = await customer.save()
+    res.status(201).json(customerSaved)
+  } catch (exception) {
+    console.log(exception)
+    res.status(500).json({ error: 'Unexpected error creating a customer' })
   }
-  let customerFound = await Customer.find({ name: data.name })
-  if (customerFound.length > 0) {
-    return res.status(400).send({ error: 'Customer by given name already exists' })
-  }
-  const customer = new Customer({
-    id: generateId(),
-    name: data.name,
-    email: data.email,
-    role: data.role,
-    address: { street: data.address.street, zip: data.address.zip, city: data.address.city }
-  })
-  const customerSaved = await customer.save()
-  res.status(201).json(customerSaved)
 })
 
 // Update customer data
